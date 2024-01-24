@@ -9,8 +9,9 @@
 
   /* Sekundäre Farben */
   --secondary-color-1: #dceef2; /* Light Blue */
-  --secondary-color-2: #d9a76a; /* Tan Brown */
-  --secondary-color-3: #a66844; /* Dark Brown */
+  --secondary-color-2: #f2cd88; /* Gold Yellow*/
+  --secondary-color-3: #d9a76a; /* Tan Brown */
+  --secondary-color-4: #a66844; /* Dark Brown */
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -47,9 +48,6 @@
 } */
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 360px;
   height: 700px;
   border: 1px solid black;
