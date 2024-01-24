@@ -1,9 +1,10 @@
 import Image from "next/image";
 import FormTansaction from "@/components/FormTansaction";
+import styled from "styled-components";
 
 export default function Home() {
   return (
-    <main className=" w-full">
+    <StyledMain>
       <Image
         className="m-auto"
         src="/logo192x192.png"
@@ -12,6 +13,10 @@ export default function Home() {
         alt="Logo Kassen kaptain"
       />
       <FormTansaction />
-    </main>
+    </StyledMain>
   );
 }
+
+const StyledMain = styled.main`
+  width: 100%;
+`;
