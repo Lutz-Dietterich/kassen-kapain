@@ -12,7 +12,7 @@ export default function FormTansaction() {
       <AmountField />
       <DropdownList />
       <DropdownList />
-      <TextField />
+      <TextField placeholder="KapitänsKommentar: mache einen Eintrag im Logbuch" />
       <StyledButton type="submit">speichern</StyledButton>
     </StyledForm>
   );

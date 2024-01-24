@@ -12,6 +12,8 @@
   --secondary-color-2: #f2cd88; /* Gold Yellow*/
   --secondary-color-3: #d9a76a; /* Tan Brown */
   --secondary-color-4: #a66844; /* Dark Brown */
+
+  --color-border: rgba(21, 40, 64, 0.3);
 }
 
 /* @media (prefers-color-scheme: dark) {
