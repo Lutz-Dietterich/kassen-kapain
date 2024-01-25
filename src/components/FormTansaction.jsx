@@ -26,7 +26,6 @@ const StyledForm = styled.form`
   margin: auto;
   width: 90%;
   min-height: 450px;
-  background-color: white;
 `;
 
 const StyledButton = styled.button`

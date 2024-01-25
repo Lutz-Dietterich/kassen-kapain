@@ -1,9 +1,9 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import StyledComponentsRegistry from "./lib/registry";
+import StyledComponentsRegistry from "../lib/registry";
 
 const roboto = Roboto({
-  weight: ["400", "700"],
+  weight: ["100", "300", "400", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",

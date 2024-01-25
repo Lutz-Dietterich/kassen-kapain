@@ -12,7 +12,6 @@ export default function TextField({ placeholder }) {
         placeholder={placeholder}
         onChange={(e) => setText(e.target.value)}
       />
-      ;
     </>
   );
 }
