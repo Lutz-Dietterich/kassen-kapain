@@ -40,13 +40,6 @@ export default function AmountField() {
     }
   }
 
-  const handlefloat = () => {
-    setBetrag(parseFloat(betrag));
-  };
-
-  console.log(typeof betrag);
-  console.log(betrag);
-
   return (
     <StyledSection>
       <StyledLabel htmlFor="moneten">Moneten</StyledLabel>
@@ -69,9 +62,6 @@ export default function AmountField() {
           -
         </StyledButtonLight>
       </StyledDiv>
-      <button type="button" onClick={handlefloat}>
-        klick
-      </button>
     </StyledSection>
   );
 }

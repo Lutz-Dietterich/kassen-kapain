@@ -1,30 +1,34 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function TextField({ placeholder }) {
+export default function TextField() {
   const [text, setText] = useState("");
 
   console.log(text);
   return (
     <>
+      <StyledLabel htmlFor="logbuch">Seemannsgarn</StyledLabel>
       <StyledTextarea
         type="text"
-        placeholder={placeholder}
+        id="logbuch"
+        name="logbuch"
+        placeholder="Mache einen Eintrag im Logbuch"
         onChange={(e) => setText(e.target.value)}
       />
     </>
   );
 }
 
+const StyledLabel = styled.label`
+  color: var(--primary-color-1);
+  width: 100%;
+`;
+
 const StyledTextarea = styled.textarea`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   width: 100%;
   height: 100px;
+  padding: 5px;
   background-color: white;
-  text-align: start;
-  hyphens: auto;
   color: var(--primary-color-1);
   border: 1px solid var(--color-border);
   border-radius: 5px;
