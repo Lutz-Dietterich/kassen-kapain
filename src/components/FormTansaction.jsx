@@ -10,8 +10,11 @@ export default function FormTansaction() {
   return (
     <StyledForm>
       <AmountField />
-      <DropdownList />
-      <DropdownList />
+      <DropdownList title="Handelskompane" placeholder="wähle einen Kompanen" />
+      <DropdownList
+        title="Ladungsklasse"
+        placeholder="wähle eine Ladungsklasse"
+      />
       <TextField />
       <StyledButton type="submit">speichern</StyledButton>
     </StyledForm>
@@ -19,7 +22,6 @@ export default function FormTansaction() {
 }
 
 const StyledForm = styled.form`
-  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -29,8 +31,6 @@ const StyledForm = styled.form`
 `;
 
 const StyledButton = styled.button`
-  position: absolute;
-  bottom: 0;
   width: 100%;
   padding: 10px;
   border-radius: 5px;

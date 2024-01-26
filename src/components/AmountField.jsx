@@ -53,6 +53,7 @@ export default function AmountField() {
           $isPositive={isPositive}
           value={betrag}
           onBlur={handleBlur}
+          required
         />
         <StyledParagraph>€</StyledParagraph>
         <StyledButton type="button" onClick={positiveClick}>
@@ -81,15 +82,20 @@ const StyledLabel = styled.label`
 const StyledDiv = styled.div`
   position: relative;
   display: flex;
+  margin-bottom: 15px;
 `;
 
 const StyledInput = styled.input`
-  padding: 8px 0 8px 20px;
+  padding: 8px 0 8px 8px;
   margin-right: 15px;
   border: 1px solid var(--color-border);
   border-radius: 5px;
   width: 195px;
   color: ${(props) => (props.$isPositive ? "var(--primary-color-1)" : "red")};
+
+  &::placeholder {
+    color: var(--color-border);
+  }
 `;
 
 const StyledParagraph = styled.p`

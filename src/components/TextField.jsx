@@ -14,6 +14,7 @@ export default function TextField() {
         name="logbuch"
         placeholder="Mache einen Eintrag im Logbuch"
         onChange={(e) => setText(e.target.value)}
+        maxLength={149}
       />
     </>
   );
@@ -32,4 +33,10 @@ const StyledTextarea = styled.textarea`
   color: var(--primary-color-1);
   border: 1px solid var(--color-border);
   border-radius: 5px;
+  margin-bottom: 30px;
+  resize: none;
+
+  &::placeholder {
+    color: var(--color-border);
+  }
 `;
