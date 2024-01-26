@@ -6,15 +6,13 @@ export default function DropdownList({ title, placeholder }) {
       <StyledLabel htmlFor="select">{title}</StyledLabel>
       <StyledDiv className="relative">
         <StyledSelect
-          type="option"
           id="select"
           name="select"
           placeholder={placeholder}
+          defaultValue="placeholder"
           required
         >
-          <option value="" disabled selected hidden>
-            {placeholder}
-          </option>
+          <option value="placeholder">{placeholder}</option>
           <option value="Lidl">Lidl</option>
           <option value="Aldi">Aldi</option>
           <option value="Rewe">Rewe</option>
@@ -49,7 +47,7 @@ const StyledSelect = styled.select`
   -moz-appearance: none;
   appearance: none;
 
-  &:required:invalid {
+  &:option[value="placeholder"] {
     color: var(--color-border);
   }
 `;

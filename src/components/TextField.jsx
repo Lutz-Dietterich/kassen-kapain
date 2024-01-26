@@ -4,7 +4,6 @@ import { useState } from "react";
 export default function TextField() {
   const [text, setText] = useState("");
 
-  console.log(text);
   return (
     <>
       <StyledLabel htmlFor="logbuch">Seemannsgarn</StyledLabel>

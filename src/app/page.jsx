@@ -11,6 +11,7 @@ export default function Home() {
           width={192}
           height={192}
           alt="Logo Kassen kaptain"
+          priority
         />
         <FormTansaction />
       </main>
