@@ -12,12 +12,12 @@ export default function DropdownList({ title, placeholder }) {
           defaultValue="placeholder"
           required
         >
-          <option value="placeholder">{placeholder}</option>
-          <option value="Lidl">Lidl</option>
-          <option value="Aldi">Aldi</option>
-          <option value="Rewe">Rewe</option>
-          <option value="Chef">Chef</option>
-          <option value="Amazon">Amazon</option>
+          <StyledOption value="">{placeholder}</StyledOption>
+          <StyledOption value="Lidl">Lidl</StyledOption>
+          <StyledOption value="Aldi">Aldi</StyledOption>
+          <StyledOption value="Rewe">Rewe</StyledOption>
+          <StyledOption value="Chef">Chef</StyledOption>
+          <StyledOption value="Amazon">Amazon</StyledOption>
         </StyledSelect>
         <FaAnchor className="absolute top-3 right-24" />
         <StyledButton type="button">neu</StyledButton>
@@ -47,10 +47,20 @@ const StyledSelect = styled.select`
   -moz-appearance: none;
   appearance: none;
 
-  &:option[value="placeholder"] {
+  &:invalid {
     color: var(--color-border);
   }
+
+  [disabled] {
+    color: var(--color-border);
+  }
+
+  option {
+    color: var(--primary-color-1);
+  }
 `;
+
+const StyledOption = styled.option``;
 
 const StyledButton = styled.button`
   width: 20%;
