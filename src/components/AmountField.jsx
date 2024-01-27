@@ -1,8 +1,13 @@
 import styled from "styled-components";
+import useTransactionStore from "@/zustand/transactionStore";
 import { useEffect, useState } from "react";
 
 export default function AmountField() {
-  const [betrag, setBetrag] = useState("");
+  const { amount, setAmount, setName } = useTransactionStore((state) => ({
+    amount: state.amount,
+    setAmount: state.setAmount,
+    setName: state.setName,
+  }));
   const [isPositive, setIsPositive] = useState(true);
 
   const handleBetrag = (e) => {
@@ -10,33 +15,35 @@ export default function AmountField() {
     value = value.replace(/,/g, ".");
     const regex = /^-?[0-9]*(\.[0-9]{0,2})?$/;
     if (regex.test(value)) {
-      setBetrag(value);
+      setAmount(value);
     }
   };
 
   useEffect(() => {
-    if (betrag > 0) {
+    if (amount > 0) {
       setIsPositive(true);
     }
-  }, [betrag]);
+  }, [amount]);
 
   const handleBlur = () => {
     // Formatierung des Betrags bei Fokusverlust
-    if (betrag !== "") {
-      setBetrag(parseFloat(betrag).toFixed(2));
+    if (amount !== "") {
+      setAmount(parseFloat(amount).toFixed(2));
     }
   };
 
   function positiveClick() {
-    if (!isPositive && betrag !== "") {
-      setBetrag(parseFloat(Math.abs(betrag)).toFixed(2));
+    if (!isPositive && amount !== "") {
+      setAmount(parseFloat(Math.abs(amount)).toFixed(2));
       setIsPositive(true);
+      setName("Einnahme");
     }
   }
   function negativeClick() {
-    if (isPositive && betrag !== "") {
-      setBetrag(parseFloat(-Math.abs(betrag)).toFixed(2));
+    if (isPositive && amount !== "") {
+      setAmount(parseFloat(-Math.abs(amount)).toFixed(2));
       setIsPositive(false);
+      setName("Ausgabe");
     }
   }
 
@@ -51,7 +58,7 @@ export default function AmountField() {
           placeholder="Betrag"
           onChange={handleBetrag}
           $isPositive={isPositive}
-          value={betrag}
+          value={amount}
           onBlur={handleBlur}
           required
         />

@@ -5,9 +5,17 @@ import styled from "styled-components";
 import AmountField from "./AmountField";
 import DropdownList from "./DropdownList";
 import TextField from "./TextField";
-import mongodb from "../utils/mongodb";
+import useTransactionStore from "@/zustand/transactionStore";
 
 export default function FormTansaction() {
+  const { mountTransaction } = useTransactionStore();
+
+  const onclick = (e) => {
+    e.preventDefault();
+    mountTransaction();
+    console.log("jup");
+  };
+
   return (
     <StyledForm>
       <AmountField />
@@ -17,7 +25,9 @@ export default function FormTansaction() {
         placeholder="wähle eine Ladungsklasse"
       />
       <TextField />
-      <StyledButton type="submit">speichern</StyledButton>
+      <StyledButton type="button" onClick={onclick}>
+        speichern
+      </StyledButton>
     </StyledForm>
   );
 }

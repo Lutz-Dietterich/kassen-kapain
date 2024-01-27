@@ -11,6 +11,7 @@ export default function TextField() {
         type="text"
         id="logbuch"
         name="logbuch"
+        value={text}
         placeholder="Mache einen Eintrag im Logbuch"
         onChange={(e) => setText(e.target.value)}
         maxLength={149}
