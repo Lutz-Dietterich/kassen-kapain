@@ -2,7 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 
 const useTransactionStore = create((set, get) => ({
-  name: "Einnahmen",
+  name: "",
   amount: "",
   partner: "",
   category: "",
@@ -18,6 +18,7 @@ const useTransactionStore = create((set, get) => ({
 
   mountTransaction: async () => {
     await get().sendTransaction();
+    await get().setCategory("Hallo");
   },
 
   sendTransaction: async () => {
