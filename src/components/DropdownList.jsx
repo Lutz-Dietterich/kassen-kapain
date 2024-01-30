@@ -1,6 +1,16 @@
 import styled from "styled-components";
 import { FaAnchor } from "react-icons/fa6";
-export default function DropdownList({ title, placeholder }) {
+import { useState } from "react";
+import NewOptionItem from "./NewOptionItem";
+
+export default function DropdownList({
+  title,
+  placeholder,
+  setValue,
+  optionsData,
+}) {
+  const [newItem, setNewItem] = useState(false);
+  console.log(optionsData);
   return (
     <>
       <StyledLabel htmlFor="select">{title}</StyledLabel>
@@ -11,16 +21,27 @@ export default function DropdownList({ title, placeholder }) {
           placeholder={placeholder}
           defaultValue="placeholder"
           required
+          onChange={(e) => setValue(e.target.value)}
         >
           <StyledOption value="">{placeholder}</StyledOption>
-          <StyledOption value="Lidl">Lidl</StyledOption>
-          <StyledOption value="Aldi">Aldi</StyledOption>
-          <StyledOption value="Rewe">Rewe</StyledOption>
-          <StyledOption value="Chef">Chef</StyledOption>
-          <StyledOption value="Amazon">Amazon</StyledOption>
+
+          {optionsData?.map((optionData) => (
+            <StyledOption key={optionData._id} value={optionData.partner}>
+              {optionData.partner}
+            </StyledOption>
+          ))}
         </StyledSelect>
         <FaAnchor className="absolute top-3 right-24" />
-        <StyledButton type="button">neu</StyledButton>
+        <StyledButton type="button" onClick={() => setNewItem(true)}>
+          neu
+        </StyledButton>
+        {newItem && (
+          <NewOptionItem
+            title={title}
+            newItem={newItem}
+            setNewItem={setNewItem}
+          />
+        )}
       </StyledDiv>
     </>
   );

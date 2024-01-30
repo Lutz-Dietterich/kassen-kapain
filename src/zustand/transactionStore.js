@@ -16,18 +16,16 @@ const useTransactionStore = create((set, get) => ({
 
   deleteData: () => set({ amount: "", partner: "", category: "", message: "" }),
 
-  mountTransaction: async () => {
-    await get().sendTransaction();
-    await get().setCategory("Hallo");
-  },
-
   sendTransaction: async () => {
     try {
       const { name, amount, partner, category, message } = get();
-      const response = await axios.post(
-        "http://localhost:3000/api/transaction",
-        { name, amount, partner, category, message }
-      );
+      await axios.post("http://localhost:3000/api/transaction", {
+        name,
+        amount,
+        partner,
+        category,
+        message,
+      });
       get().deleteData();
     } catch (error) {
       console.error("Fehler beim senden der Transaktion", error);

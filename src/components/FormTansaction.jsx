@@ -1,28 +1,60 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import AmountField from "./AmountField";
 import DropdownList from "./DropdownList";
 import TextField from "./TextField";
 import useTransactionStore from "@/zustand/transactionStore";
+import usePartnerStore from "@/zustand/partnerStore";
 
 export default function FormTansaction() {
-  const { mountTransaction } = useTransactionStore();
+  const { setPartner, setCategory, sendTransaction } = useTransactionStore(
+    (state) => ({
+      setPartner: state.setPartner,
+      setCategory: state.setCategory,
+      sendTransaction: state.sendTransaction,
+    })
+  );
+
+  const { sendNewPartner, partnerList, fetchPartnerList } = usePartnerStore(
+    (state) => ({
+      sendNewPartner: state.sendNewPartner,
+      partnerList: state.partnerList,
+      fetchPartnerList: state.fetchPartnerList,
+    })
+  );
 
   const onclick = (e) => {
     e.preventDefault();
-    mountTransaction();
-    console.log("jup");
+    sendTransaction();
   };
 
+  useEffect(() => {
+    fetchPartnerList();
+  }, [fetchPartnerList]);
+
+  const catagoryList = [
+    {
+      _id: "65b6b3c3534ac29beb9b8703",
+      partner: "Lebensmittel",
+      __v: 0,
+    },
+  ];
   return (
     <StyledForm>
       <AmountField />
-      <DropdownList title="Handelskompane" placeholder="wähle einen Kompanen" />
+      <DropdownList
+        title="Handelskompane"
+        placeholder="wähle einen Kompanen"
+        setValue={setPartner}
+        optionsData={partnerList}
+      />
       <DropdownList
         title="Ladungsklasse"
         placeholder="wähle eine Ladungsklasse"
+        setValue={setCategory}
+        optionsData={catagoryList}
       />
       <TextField />
       <StyledButton type="button" onClick={onclick}>

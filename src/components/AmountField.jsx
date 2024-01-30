@@ -3,11 +3,10 @@ import useTransactionStore from "@/zustand/transactionStore";
 import { useEffect, useState } from "react";
 
 export default function AmountField() {
-  const { name, amount, setAmount, setName } = useTransactionStore((state) => ({
+  const { amount, setAmount, setName } = useTransactionStore((state) => ({
     amount: state.amount,
     setAmount: state.setAmount,
     setName: state.setName,
-    name: state.name,
   }));
   const [isPositive, setIsPositive] = useState(true);
 
@@ -27,7 +26,6 @@ export default function AmountField() {
   }, [amount, setIsPositive, setName]);
 
   const handleBlur = () => {
-    // Formatierung des Betrags bei Fokusverlust
     if (amount !== "") {
       setAmount(parseFloat(amount).toFixed(2));
       if (amount > 0) {
