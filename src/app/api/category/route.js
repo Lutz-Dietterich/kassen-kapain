@@ -1,10 +1,10 @@
-import Partner from "../../../models/Partner";
+import Category from "../../../models/Category";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const partnerList = await Partner.find({}).lean();
-    return NextResponse.json({ partnerList });
+    const categoryList = await Category.find({}).lean();
+    return NextResponse.json({ categoryList });
   } catch (error) {
     return NextResponse.json({ message: "Error", error }, { status: 500 });
   }
@@ -13,11 +13,11 @@ export async function GET() {
 export async function POST(req) {
   try {
     const body = await req.json();
-    const partnerData = body;
-    await Partner.create(partnerData);
+    const categoryData = body;
+    await Category.create(categoryData);
 
     return NextResponse.json(
-      { data: partnerData, message: "Partner Created" },
+      { data: categoryData, message: "Category Created" },
       { status: 201 }
     );
   } catch (error) {

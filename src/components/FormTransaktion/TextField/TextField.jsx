@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import { useState } from "react";
+import useTransactionStore from "../../../zustand/transactionStore";
 
 export default function TextField() {
-  const [text, setText] = useState("");
+  const { message, setMessage } = useTransactionStore((state) => ({
+    message: state.message,
+    setMessage: state.setMessage,
+  }));
 
   return (
     <>
@@ -11,9 +14,9 @@ export default function TextField() {
         type="text"
         id="logbuch"
         name="logbuch"
-        value={text}
+        value={message}
         placeholder="Mache einen Eintrag im Logbuch"
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => setMessage(e.target.value)}
         maxLength={149}
       />
     </>

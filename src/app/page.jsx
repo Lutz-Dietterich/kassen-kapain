@@ -1,5 +1,5 @@
 import Image from "next/image";
-import FormTansaction from "@/components/FormTansaction";
+import FormTansaction from "../components/FormTransaktion/FormTansaction";
 
 export default function Home() {
   return (

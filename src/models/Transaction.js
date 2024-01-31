@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
+import mongodb from "../utils/mongodb";
 
-mongoose.connect(process.env.MONGODB_URI);
-mongoose.Promise = global.Promise;
+mongodb.dbConnect();
 
 const transactionSchema = new Schema(
   {

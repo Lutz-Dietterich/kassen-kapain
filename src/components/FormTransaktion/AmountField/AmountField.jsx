@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import useTransactionStore from "@/zustand/transactionStore";
+import useTransactionStore from "../../../zustand/transactionStore";
 import { useEffect, useState } from "react";
 
 export default function AmountField() {

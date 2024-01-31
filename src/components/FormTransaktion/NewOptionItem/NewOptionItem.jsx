@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { useState } from "react";
-import usePartnerStore from "@/zustand/partnerStore";
+import usePartnerStore from "../../../zustand/partnerStore";
+import useCategoryStore from "../../../zustand/categoryStore";
 
 export default function NewOptionItem({ title, newItem, setNewItem }) {
   const [input, setInput] = useState("");
 
   const { sendNewPartner, fetchPartnerList } = usePartnerStore();
+  const { sendNewCategory, fetchCategoryList } = useCategoryStore();
 
   const placeholder =
     title === "Handelskompane"
@@ -14,19 +16,26 @@ export default function NewOptionItem({ title, newItem, setNewItem }) {
       ? "trage eine neue Ladungsklasse ein"
       : "";
 
-  const handleSendOptionData = async (e) => {
+  const handleSendPartner = async (e) => {
     e.preventDefault();
-    console.log("hallotest");
     try {
-      // Senden des neuen Partners und Warten auf die erfolgreiche Antwort
       await sendNewPartner(input);
-
-      // Nach erfolgreichem Senden, Abrufen der aktualisierten Partnerliste
       fetchPartnerList();
     } catch (error) {
       console.error("Fehler beim Senden des neuen Partners", error);
     } finally {
-      // Setzen des Inputs zurück, unabhängig vom Erfolg des Sendens
+      setInput("");
+      setNewItem(false);
+    }
+  };
+  const handleSendCategory = async (e) => {
+    e.preventDefault();
+    try {
+      await sendNewCategory(input);
+      fetchCategoryList();
+    } catch (error) {
+      console.error("Fehler beim Senden des neuen Partners", error);
+    } finally {
       setInput("");
       setNewItem(false);
     }
@@ -49,7 +58,14 @@ export default function NewOptionItem({ title, newItem, setNewItem }) {
           <StyledCancelButton type="button" onClick={() => setNewItem(false)}>
             Abbrechen
           </StyledCancelButton>
-          <StyledSubmitButton type="button" onClick={handleSendOptionData}>
+          <StyledSubmitButton
+            type="button"
+            onClick={
+              title === "Handelskompane"
+                ? handleSendPartner
+                : handleSendCategory
+            }
+          >
             Speichern
           </StyledSubmitButton>
         </StyledButtonSection>

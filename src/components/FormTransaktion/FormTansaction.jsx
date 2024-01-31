@@ -2,11 +2,12 @@
 
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import AmountField from "./AmountField";
-import DropdownList from "./DropdownList";
-import TextField from "./TextField";
-import useTransactionStore from "@/zustand/transactionStore";
-import usePartnerStore from "@/zustand/partnerStore";
+import AmountField from "./AmountField/AmountField";
+import DropdownList from "./DropdownList/DropdownList";
+import TextField from "./TextField/TextField";
+import useTransactionStore from "../../zustand/transactionStore";
+import usePartnerStore from "../../zustand/partnerStore";
+import useCategoryStore from "../../zustand/categoryStore";
 
 export default function FormTansaction() {
   const { setPartner, setCategory, sendTransaction } = useTransactionStore(
@@ -17,13 +18,15 @@ export default function FormTansaction() {
     })
   );
 
-  const { sendNewPartner, partnerList, fetchPartnerList } = usePartnerStore(
-    (state) => ({
-      sendNewPartner: state.sendNewPartner,
-      partnerList: state.partnerList,
-      fetchPartnerList: state.fetchPartnerList,
-    })
-  );
+  const { partnerList, fetchPartnerList } = usePartnerStore((state) => ({
+    partnerList: state.partnerList,
+    fetchPartnerList: state.fetchPartnerList,
+  }));
+
+  const { categoryList, fetchCategoryList } = useCategoryStore((state) => ({
+    categoryList: state.categoryList,
+    fetchCategoryList: state.fetchCategoryList,
+  }));
 
   const onclick = (e) => {
     e.preventDefault();
@@ -32,34 +35,28 @@ export default function FormTansaction() {
 
   useEffect(() => {
     fetchPartnerList();
-  }, [fetchPartnerList]);
+    fetchCategoryList();
+  }, [fetchPartnerList, fetchCategoryList]);
 
-  const catagoryList = [
-    {
-      _id: "65b6b3c3534ac29beb9b8703",
-      partner: "Lebensmittel",
-      __v: 0,
-    },
-  ];
   return (
-    <StyledForm>
+    <StyledForm onSubmit={onclick}>
       <AmountField />
       <DropdownList
         title="Handelskompane"
         placeholder="wähle einen Kompanen"
         setValue={setPartner}
         optionsData={partnerList}
+        required
       />
       <DropdownList
         title="Ladungsklasse"
         placeholder="wähle eine Ladungsklasse"
         setValue={setCategory}
-        optionsData={catagoryList}
+        optionsData={categoryList}
+        required
       />
       <TextField />
-      <StyledButton type="button" onClick={onclick}>
-        speichern
-      </StyledButton>
+      <StyledButton type="submit">speichern</StyledButton>
     </StyledForm>
   );
 }

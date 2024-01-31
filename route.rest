@@ -4,6 +4,13 @@ content-Type: application/json
 
 ###
 
+GET http://localhost:3000/api/category
+content-Type: application/json
+
+
+
+###
+
 
 POST http://localhost:3000/api/transaction
 content-Type: application/json
@@ -24,4 +31,15 @@ content-Type: application/json
 
         {
           "partner": "Hallo"
+        }
+
+
+
+###
+
+POST http://localhost:3000/api/category
+content-Type: application/json
+
+        {
+          "category": "Hallo"
         }

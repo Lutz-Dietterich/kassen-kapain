@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FaAnchor } from "react-icons/fa6";
 import { useState } from "react";
-import NewOptionItem from "./NewOptionItem";
+import NewOptionItem from "../NewOptionItem/NewOptionItem";
 
 export default function DropdownList({
   title,
@@ -10,7 +10,6 @@ export default function DropdownList({
   optionsData,
 }) {
   const [newItem, setNewItem] = useState(false);
-  console.log(optionsData);
   return (
     <>
       <StyledLabel htmlFor="select">{title}</StyledLabel>
@@ -26,8 +25,17 @@ export default function DropdownList({
           <StyledOption value="">{placeholder}</StyledOption>
 
           {optionsData?.map((optionData) => (
-            <StyledOption key={optionData._id} value={optionData.partner}>
-              {optionData.partner}
+            <StyledOption
+              key={optionData._id}
+              value={
+                title === "Handelskompane"
+                  ? optionData.partner
+                  : optionData.category
+              }
+            >
+              {title === "Handelskompane"
+                ? optionData.partner
+                : optionData.category}
             </StyledOption>
           ))}
         </StyledSelect>

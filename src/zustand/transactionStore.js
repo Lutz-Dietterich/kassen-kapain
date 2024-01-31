@@ -14,7 +14,7 @@ const useTransactionStore = create((set, get) => ({
   setCategory: (neueCategory) => set({ category: neueCategory }),
   setMessage: (neuerMessage) => set({ message: neuerMessage }),
 
-  deleteData: () => set({ amount: "", partner: "", category: "", message: "" }),
+  deleteData: () => set({ amount: "", message: "" }),
 
   sendTransaction: async () => {
     try {
