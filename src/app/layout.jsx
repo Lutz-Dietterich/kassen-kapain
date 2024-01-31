@@ -1,8 +1,9 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import StyledComponentsRegistry from "../lib/registry";
 
 const roboto = Roboto({
-  weight: ["400", "700"],
+  weight: ["100", "300", "400", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
@@ -16,8 +17,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="de">
-      <body className={roboto.className}>
-        <div className="wrapper">{children}</div>
+      <body className={roboto.className} suppressHydrationWarning={true}>
+        <div className="wrapper">
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        </div>
       </body>
     </html>
   );
